@@ -12,9 +12,8 @@ var searchButton = document.getElementById("searchBtn");
 var city = document.getElementById("cityBox");
 var user = document.getElementById("userInput");
 
-cityArray = [];
+var cityArray = [];
 
-  
 
 
 
@@ -32,6 +31,7 @@ function citySearch() {
     });
 
    cityHistory();
+   
 
 
 
@@ -39,21 +39,28 @@ function citySearch() {
 
 function cityHistory() {
     if (user.value === null) {
-        searchHistory = [user.value];
+        user.value == true
     }
     cityArray.push(user.value);
     console.log(cityArray);
 
     localStorage.setItem("city", JSON.stringify(cityArray));  
+    cityArray = JSON.parse(localStorage.getItem("city"));
+    
 
     var list = document.querySelector(".list-group");
+    list.innerHTML = "";
 
     for (var i = 0; i < cityArray.length; i++) {
         var newLiEl = document.createElement("li");
 
-        newLiEl.textContent = cityArray[i].
         list.appendChild(newLiEl);
         newLiEl.classList.add("list-group-item");
+        newLiEl.innerHTML = cityArray[i]
+        console.log(newLiEl);
+        
+        
+        
         
     }
 
