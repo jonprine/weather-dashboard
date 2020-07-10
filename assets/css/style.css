@@ -14,6 +14,10 @@ body {
 #searchBox {
     padding-left: 0;
     padding-right: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 0px
+}
+
+.card-body {
+    padding-left: 0;
 }
 
