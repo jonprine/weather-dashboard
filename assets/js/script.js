@@ -71,7 +71,7 @@ function cityInfo(weatherData) {
     
     var iconHTML = document.getElementById("icon");
     var icon = weatherData.weather[0].icon;
-    var weatherIcon = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     iconHTML.setAttribute("src", weatherIcon);
     var city = document.getElementById("cityName");
     city.textContent = weatherData.name + " " + "(" + currentDay + ") ";
@@ -115,7 +115,7 @@ function fiveDayForecast(forecast) {
         date2.textContent = day2;
         var iconHTML2 = document.getElementById("day-2-icon");
         var icon2 = forecast.list[0].weather[0].icon;
-        var weatherIcon = "http://openweathermap.org/img/wn/" + icon2 + "@2x.png";
+        var weatherIcon = "https://openweathermap.org/img/wn/" + icon2 + "@2x.png";
         iconHTML2.setAttribute("src", weatherIcon);
         var temp2 = document.getElementById("temp-2")
         temp2.textContent = "Temp: " + (Math.round(((forecast.list[0].main.temp * 9 / 5) - 459.67))) + " " + "°F";
@@ -127,7 +127,7 @@ function fiveDayForecast(forecast) {
         date3.textContent = day3;
         var iconHTML3 = document.getElementById("day-3-icon");
         var icon3 = forecast.list[1].weather[0].icon;
-        var weatherIcon = "http://openweathermap.org/img/wn/" + icon3 + "@2x.png";
+        var weatherIcon = "https://openweathermap.org/img/wn/" + icon3 + "@2x.png";
         iconHTML3.setAttribute("src", weatherIcon);
         var temp3 = document.getElementById("temp-3")
         temp3.textContent = "Temp: " + (Math.round(((forecast.list[1].main.temp * 9 / 5) - 459.67))) + " " + "°F";
@@ -138,7 +138,7 @@ function fiveDayForecast(forecast) {
         date4.textContent = day4;
         var iconHTML4 = document.getElementById("day-4-icon");
         var icon4 = forecast.list[2].weather[0].icon;
-        var weatherIcon = "http://openweathermap.org/img/wn/" + icon4 + "@2x.png";
+        var weatherIcon = "https://openweathermap.org/img/wn/" + icon4 + "@2x.png";
         iconHTML4.setAttribute("src", weatherIcon);
         var temp4 = document.getElementById("temp-4")
         temp4.textContent = "Temp: " + (Math.round(((forecast.list[2].main.temp * 9 / 5) - 459.67))) + " " + "°F";
@@ -149,7 +149,7 @@ function fiveDayForecast(forecast) {
         date5.textContent = day5;
         var iconHTML5 = document.getElementById("day-5-icon");
         var icon5 = forecast.list[3].weather[0].icon;
-        var weatherIcon = "http://openweathermap.org/img/wn/" + icon5 + "@2x.png";
+        var weatherIcon = "https://openweathermap.org/img/wn/" + icon5 + "@2x.png";
         iconHTML5.setAttribute("src", weatherIcon);
         var temp5 = document.getElementById("temp-5")
         temp5.textContent = "Temp: " + (Math.round(((forecast.list[2].main.temp * 9 / 5) - 459.67))) + " " + "°F";
@@ -160,7 +160,7 @@ function fiveDayForecast(forecast) {
         date6.textContent = day6;
         var iconHTML6 = document.getElementById("day-6-icon");
         var icon6 = forecast.list[4].weather[0].icon;
-        var weatherIcon = "http://openweathermap.org/img/wn/" + icon6 + "@2x.png";
+        var weatherIcon = "https://openweathermap.org/img/wn/" + icon6 + "@2x.png";
         iconHTML6.setAttribute("src", weatherIcon);
         var temp6 = document.getElementById("temp-6")
         temp6.textContent = "Temp: " + (Math.round(((forecast.list[2].main.temp * 9 / 5) - 459.67))) + " " + "°F";
