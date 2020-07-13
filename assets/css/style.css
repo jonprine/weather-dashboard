@@ -24,3 +24,7 @@ body {
 #forecastWeek {
     margin-left: 15px;
 }
+
+#cityInfo {
+    padding: 20px;
+}
