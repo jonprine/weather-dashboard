@@ -69,8 +69,12 @@ function cityHistory() {
 
 // add info to current city weather info
 function cityInfo(weatherData) {
-    var city = document.getElementById("cityName");
     
+    var iconHTML = document.getElementById("icon");
+    var icon = weatherData.weather[0].icon;
+    var weatherIcon = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    iconHTML.setAttribute("src", weatherIcon);
+    var city = document.getElementById("cityName");
     city.textContent = weatherData.name + " " + "(" + currentDay + ") ";
     var temp = document.getElementById("temperature");
     temp.textContent = "Temperature:" + " " + (Math.round(((weatherData.main.temp * 9 / 5) - 459.67))) + " " + "°F";
@@ -79,8 +83,9 @@ function cityInfo(weatherData) {
     var wind = document.getElementById("windspeed");
     wind.textContent = "Wind Speed:" + " " + (Math.round(weatherData.wind.speed / .44704)) + " " + "MPH";
     var uv = document.getElementById("uvindex");
-    var weatherIcon = "http://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png";
+
     
+
   
 
 }
