@@ -11,6 +11,7 @@ var currentDay = moment().format("MM-DD-YYYY");
 var searchButton = document.getElementById("searchBtn");
 var city = document.getElementById("cityBox");
 var user = document.getElementById("userInput");
+var uvIndex = document.getElementById("uvindex");
 
 var cityArray = [];
 
@@ -25,8 +26,8 @@ var day6 = moment().add(5, "days").format("L");
 
 
 // returns city weather data
-function citySearch() {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + user.value + "&appid=22b9a0b55690d6f460e09b867c2777d1")
+function citySearch(cityname) {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=22b9a0b55690d6f460e09b867c2777d1")
         .then(function (response) {
             return response.json()
         })
@@ -34,41 +35,82 @@ function citySearch() {
             console.log(data);
             cityInfo(data);
         });
-    cityHistory();
-    fiveDay();
+    cityHistory(cityname);
+    fiveDay(cityname);
 
 }
 
-function cityHistory() {
-    if (user.value === null) {
-        user.value == true
+function cityHistory(city) {
+    if (user.value === "") {
+        return
+    }
+    if (cityArray.includes(city)) {
+        return
     }
     cityArray.push(user.value);
     console.log(cityArray);
 
     localStorage.setItem("city", JSON.stringify(cityArray));
-    cityArray = JSON.parse(localStorage.getItem("city"));
+    getCityHistory();
 
+}
+
+function getCityHistory() {
+    cityArray = JSON.parse(localStorage.getItem("city"));
+    if (!cityArray) {
+        cityArray = [];
+        return
+    }
 
     var list = document.querySelector(".list-group");
     list.innerHTML = "";
 
     for (var i = 0; i < cityArray.length; i++) {
         var newLiEl = document.createElement("li");
+        newLiEl.addEventListener("click", handleCityClick)
 
-        list.appendChild(newLiEl);
         newLiEl.classList.add("list-group-item");
         newLiEl.innerHTML = cityArray[i]
+        list.appendChild(newLiEl);
         console.log(newLiEl);
     }
-
 }
 
+function handleCityClick(event) {
+    var liCity = event.target.textContent
+    citySearch(liCity)
+}
 
+/*// uv index
+
+
+
+function cityUV(lon, lat, city) {
+    fetch("https://api.openweathermap.org/data/2.5/uvi?q=" + user.value + "&appid=22b9a0b55690d6f460e09b867c2777d1" + "&lat=" + lat + "&lon=" + lon)
+    .then(function (response) {
+        return response.json()
+    })
+    .then(function (lon, lat, city) {
+        displayUV(lon, lat, city);
+    });
+
+}
+var lon = city.coord.lon;
+var lat = city.coord.lat;
+cityUV(lon, lat, user.value);
+
+function displayUV(data) {
+    var uv = data.value;
+    if (uv >=6) {
+        uvIndex.classList="badgebadge-danger"
+        uvIndex.innerHTML=" " + uv + " ";
+    }
+}
+*/
 
 // add info to current city weather info
 function cityInfo(weatherData) {
-    
+
     var iconHTML = document.getElementById("icon");
     var icon = weatherData.weather[0].icon;
     var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
@@ -83,16 +125,12 @@ function cityInfo(weatherData) {
     wind.textContent = "Wind Speed:" + " " + (Math.round(weatherData.wind.speed / .44704)) + " " + "MPH";
     var uv = document.getElementById("uvindex");
 
-    
-
-  
-
 }
 
 // 5 day weather forecast
 
-function fiveDay() {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + user.value + "&cnt=5&appid=22b9a0b55690d6f460e09b867c2777d1")
+function fiveDay(cityname) {
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&cnt=5&appid=22b9a0b55690d6f460e09b867c2777d1")
         .then(function (response) {
             return response.json()
         })
@@ -173,9 +211,13 @@ function fiveDayForecast(forecast) {
 
 }
 
+function handleClick() {
+    citySearch(user.value);
+}
 
+getCityHistory();
 
 
 
 // when user clicks search button
-searchButton.addEventListener("click", citySearch)
+searchButton.addEventListener("click", handleClick)
