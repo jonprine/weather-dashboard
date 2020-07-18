@@ -28,3 +28,7 @@ body {
 #cityInfo {
     padding: 20px;
 }
+
+.hide {
+    display: none;
+}

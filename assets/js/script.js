@@ -32,7 +32,6 @@ function citySearch(cityname) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data);
             cityInfo(data);
         });
     cityHistory(cityname);
@@ -48,7 +47,6 @@ function cityHistory(city) {
         return
     }
     cityArray.push(user.value);
-    console.log(cityArray);
 
     localStorage.setItem("city", JSON.stringify(cityArray));
     getCityHistory();
@@ -72,7 +70,6 @@ function getCityHistory() {
         newLiEl.classList.add("list-group-item");
         newLiEl.innerHTML = cityArray[i]
         list.appendChild(newLiEl);
-        console.log(newLiEl);
     }
 }
 
@@ -141,7 +138,9 @@ function fiveDay(cityname) {
 }
 
 function fiveDayForecast(forecast) {
-    console.log(forecast);
+
+    var fiveDayEl = document.getElementById("forecastWeek");
+    fiveDayEl.classList.remove("hide");
 
     for (var i = 0; i < 5; i++) {
 
