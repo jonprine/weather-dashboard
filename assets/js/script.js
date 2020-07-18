@@ -212,6 +212,7 @@ function fiveDayForecast(forecast) {
 
 function handleClick() {
     citySearch(user.value);
+    city.classList.remove("hide");
 }
 
 getCityHistory();
